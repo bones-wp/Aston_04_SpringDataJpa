@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,16 +30,16 @@ public class TestController {
 
 
     @PostMapping(value = "/addUser")
-    public ResponseEntity<?> createUser (@RequestParam("name") String name) throws SQLException {
+    public ResponseEntity<?> createUser(@RequestParam("name") String name) throws SQLException {
         if (connection.isPresent()) {
             stmt = connection.get().createStatement();
         }
 
-        User user = new User(name);
-        userRepo.save(user);
+        //User user = new User(name);
+        //userRepo.save(user);
 
-//        String psql = "INSERT INTO USERS (name) VALUES ('" + name + "')";
-//        stmt.executeUpdate(psql);
+        String psql = "INSERT INTO USERS (name) VALUES ('" + name + "')";
+        stmt.executeUpdate(psql);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
 

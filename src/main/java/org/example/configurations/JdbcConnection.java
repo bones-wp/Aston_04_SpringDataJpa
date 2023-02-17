@@ -1,5 +1,7 @@
 package org.example.configurations;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,6 +11,7 @@ import java.util.Optional;
  * реализация паттерна Singleton
  */
 
+@Component
 public class JdbcConnection {
 
     private static Optional<Connection> connection = Optional.empty();
